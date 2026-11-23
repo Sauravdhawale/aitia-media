@@ -27,16 +27,6 @@ if (grid && typeof Element.prototype.animate === 'function') {
   enter(document.querySelector('.guide-sheet'), '12px 14px', 0.6, 0.06);
   enter(document.querySelector('.print-ticket'), '0px 10px', 0.4, 0.14);
 
-  const dock = grid.querySelector('.service-dock');
-  let previous = dock.querySelector('[aria-pressed="true"]');
-  new MutationObserver(() => {
-    const selected = dock.querySelector('[aria-pressed="true"]');
-    if (selected === previous) return;
-    previous = selected;
-    enter(selected?.querySelector('svg'), '0px 4px', 0.24);
-    enter(grid.querySelector('[data-dock-label]'), '0px 3px', 0.2);
-  }).observe(dock, {subtree:true, attributes:true, attributeFilter:['aria-pressed']});
-
   preference.addEventListener('change', () => {
     if (preference.matches) finishAnimations();
   });

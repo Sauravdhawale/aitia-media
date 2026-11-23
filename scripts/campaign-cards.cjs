@@ -24,23 +24,14 @@ function scene(viewBox, inside) {
   return `<svg class="scene" viewBox="${viewBox}" aria-hidden="true" fill="none" stroke-linejoin="round">${inside}</svg>`;
 }
 function sheet() {
-  const ribbon = '<path class="paper" d="M45 143 164 78Q199 40 235 61L334 10 392 40 281 104Q237 82 206 120L103 176Z"/><path d="m66 142 39 22m-18-33 39 22m158-89 44-24m-35 29 44-24"/>';
-  const bars = [20,40,66].map((height,i)=>{
-    const x = 134 + i*30, y = 140 - i*15;
-    return `<g class="column col-${i}" style="--delay:${-i*.38}s"><path class="paper" d="M${x} ${y}v-${height}l15-8 15 8v${height}l-15 8Z"/><path d="M${x} ${y-height}l15 8 15-8m-15 8v${height}"/></g>`;
-  }).join('');
-  return scene('0 0 430 190', `<g class="guides"><path d="m10 156 286-153M77 187 306 63M51 111l162 84M246 7l160 80"/></g><g class="sheet-scroll">${ribbon}${bars}</g>`);
+  return `<div class="brief-art" aria-hidden="true">
+    <div class="account-list"><b>Account list</b>${['Industry','Company size','Buying team'].map(label=>`<span><i>✓</i>${label}</span>`).join('')}</div>
+    <div class="brief-route"></div><div class="brief-cover"><small>AITIA MEDIA</small><strong>Sales<br><em>brief.</em></strong><i></i></div>
+  </div>`;
 }
 function conveyor() {
-  const pages = [0,1,2].map(i => `<g class="packet" style="--delay:${-i * 2}s;--rest:${i * 60}px">
-    <path class="paper" d="m36 78 22-12 14 8v28l-22 13-14-9Z"/>
-    <path d="m36 78 14 8 22-12m-22 12v29"/><path class="accent" d="m54 92 12-7m-12 13 9-5"/>
-  </g>`).join('');
-  const rollers = Array.from({length:14}, (_,i) => `<path d="m${30+i*16} 108 20-12"/>`).join('');
-  return scene('0 0 300 150', `<path class="paper" d="m12 108 25-15h226l25 16-25 15H38Z"/>
-    <g opacity=".32">${rollers}</g><path d="m12 108 26 16h225l25-15v5l-25 16H38l-26-16Z"/>
-    ${pages}<path class="accent" d="M170 113V68l20-11 17 10v33" stroke-dasharray="3 3"/>`);
-
+  return `<div class="distribution" aria-hidden="true"><div class="mini-guide"><small>FIELD GUIDE</small><b>Buyer<br><em>insights.</em></b></div>
+    <div class="branches"><i></i></div><div class="channels">${['Publisher','Email','Webinar'].map(name=>`<span>${name}</span>`).join('')}</div></div>`;
 }
 function filterButton(name, attr, first) {
   return `<button type="button" ${attr}="${name}" aria-pressed="${first}">${name}</button>`;
@@ -58,7 +49,7 @@ function world() {
     `<div class="clockline"><div class="controls">${cities.map(([n,z],i)=>`<button type="button" data-city="${n}" data-zone="${z}" aria-pressed="${i===0}">${n}</button>`).join('')}</div><time data-clock></time></div>`;
 }
 function dock() {
-  return `<div class="dock-area"><p data-dock-label>B2B Lead Generation</p><div class="service-dock">${services.map(([name,slug,shape],i)=>`<button type="button" data-dock-item data-name="${name}" data-route="${slug}.html" aria-label="${name}" aria-pressed="${i===0}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">${drawings[shape]}</svg></button>`).join('')}</div><a class="dock-open" href="b2b-lead-generation.html">Explore service</a></div>`;
+  return `<nav class="service-directory" aria-label="Explore B2B services">${services.map(([name,slug,shape])=>`<a href="${slug}.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">${drawings[shape]}</svg><span>${name}</span><i aria-hidden="true">↗</i></a>`).join('')}</nav>`;
 }
 module.exports = function campaignCards() {
   const panels = [

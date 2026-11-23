@@ -31,16 +31,6 @@
   });
   updateClock();
   setInterval(updateClock, 30000);
-  grid.querySelectorAll('[data-dock-item]').forEach(button => {
-    function activate() {
-      select(button, '[data-dock-item]');
-      grid.querySelector('[data-dock-label]').textContent = button.dataset.name;
-      grid.querySelector('.dock-open').href = button.dataset.route;
-    }
-    button.addEventListener('pointerenter', activate);
-    button.addEventListener('focus', activate);
-    button.addEventListener('click', activate);
-  });
   const pause = grid.querySelector('.motion-control');
   pause.addEventListener('click', () => {
     const paused = grid.toggleAttribute('data-paused');

@@ -116,3 +116,60 @@
   .campaign-print {width:min(100%,330px);aspect-ratio:1.6}
 }
 
+
+/* The illustrations share the printed-paper palette of the hero. */
+.brief-art,.distribution {
+  display:flex;align-items:center;justify-content:center;isolation:isolate;
+  flex:1;min-height:180px;margin-top:16px;padding:16px;
+  background:radial-gradient(circle,var(--border) .75px,transparent 1px) center/12px 12px;
+  border-radius:12px;
+}
+.brief-art {background-color:color-mix(in srgb,var(--canvas) 72%,var(--surface))}
+.account-list,.brief-cover,.mini-guide {position:relative;border-radius:5px;}
+.account-list {width:clamp(118px,12vw,160px);padding:12px;background:var(--surface);border:1px solid var(--border);transform:rotate(-5deg)}
+.account-list b {display:block;font-size:16px;letter-spacing:-.04em;margin-bottom:7px}
+.account-list span {display:flex;align-items:center;gap:6px;border-top:1px solid var(--border);padding:5px 0;font:11px 'Geist Mono',monospace}
+.account-list i {color:var(--brand);font-style:normal}
+.brief-route,.branches {width:clamp(18px,5vw,74px);border-top:1px dashed var(--brand);position:relative;}
+.brief-route:after,.branches i {content:'';position:absolute;top:-3px;left:0;width:5px;height:5px;background:var(--brand);border-radius:50%;animation:route-pulse 3s ease-in-out infinite;}
+@keyframes route-pulse {to {left:100%;opacity:.2}}
+.brief-cover,.mini-guide {width:clamp(100px,10vw,140px);padding:14px;color:#fff7e9;background:#a41029;transform:rotate(5deg);overflow:hidden}
+.brief-cover small,.mini-guide small {font:10px 'Geist Mono',monospace;letter-spacing:.08em;color:inherit}
+.brief-cover strong,.mini-guide b {position:relative;display:block;font:500 37px/.85 Georgia,serif;letter-spacing:-.065em;margin:14px 0;z-index:1}
+.brief-cover i,.mini-guide:after {content:'';display:block;height:12px;background:repeating-linear-gradient(117deg,transparent 0 4px,#f2ceb0 4px 5px)}
+.distribution {padding-inline:8px}
+.mini-guide {width:98px;color:#fff3d8;background:#293d38;transform:rotate(-6deg)}
+.mini-guide b {font-size:29px}
+.branches {width:18%;max-width:50px}
+.channels {display:grid;gap:8px;position:relative}
+.channels:before {content:'';position:absolute;inset:15% 100% 15% -9px;border:1px solid var(--brand);border-right:0;border-radius:4px 0 0 4px}
+.channels span {background:var(--surface);padding:5px 9px;border:1px solid var(--border);border-radius:5px;font-size:13px}
+.service-directory {margin:auto 0;padding-top:16px}
+.service-directory a {display:grid;grid-template-columns:24px 1fr auto;align-items:center;gap:10px;min-height:44px;border-bottom:1px solid var(--border);font-weight:500}
+.service-directory a:last-child {border:0}
+.service-directory svg {width:19px;color:var(--brand)}
+.service-directory i {font-style:normal;color:var(--muted)}
+.service-directory a:hover,.service-directory a:focus-visible {color:var(--brand)}
+#main>.section.inset {padding-inline:max(clamp(16px,3vw,44px),calc((100% - 1060px)/2));padding-block:clamp(32px,5vw,68px)}
+#main .service-card {min-height:0;padding:24px;display:grid;grid-template-columns:42px minmax(0,1fr);column-gap:16px;align-content:start}
+#main .service-card .service-icon {grid-row:span 3;margin:0!important;background:var(--canvas)}
+#main .service-card p {max-width:48ch;margin:8px 0 16px}
+#main .service-card .text-link {justify-self:start;font-size:14px}
+#main .process {gap:0;background:var(--surface);border:1px solid var(--border);border-radius:18px;overflow:hidden}
+#main .process article {border:0;padding:20px}
+#main .process article+article {border-inline-start:1px solid var(--border)}
+#main .process .step {background:var(--canvas);width:36px;height:36px;font-size:12px}
+#main .process p {font-size:14px}
+#main .project-card img {width:100%;height:auto;aspect-ratio:1.95;object-fit:cover}
+#main .split p {max-width:54ch}
+#main .section:has(>.faq) {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:32px}
+#main .faq {margin:0;max-width:none}
+@media(max-width:760px){
+  #main .process {grid-template-columns:1fr 1fr}
+  #main .process article:nth-child(odd){border-inline-start:0}
+  #main .process article:nth-child(n+3){border-top:1px solid var(--border)}
+  #main .section:has(>.faq){grid-template-columns:1fr;gap:0}
+  #main .service-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){.brief-route:after{animation:none}}
+.campaign-grid[data-paused] .brief-route:after,.campaign-grid[data-offscreen] .brief-route:after{animation-play-state:paused}
