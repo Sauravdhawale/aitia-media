@@ -1,0 +1,65 @@
+.campaign-grid {
+  display:grid; grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:10px; padding:12px; background:var(--canvas);
+  --art-line:color-mix(in srgb,var(--text) 58%,var(--surface));
+}
+.campaign-card {
+  position:relative; isolation:isolate; overflow:hidden; min-width:0;
+  display:flex; flex-direction:column; grid-column:span 4;
+  padding:20px; border:1px solid var(--border); border-radius:22px;
+  background:var(--surface); transition:border-color .3s;
+}
+.campaign-card:first-child { grid-column:span 7; }
+.campaign-card:nth-child(2) { grid-column:span 5; }
+.campaign-card:hover,.campaign-card:focus-within { border-color:var(--art-line); }
+.campaign-heading span { font-size:11px; text-transform:uppercase; letter-spacing:.075em; color:var(--muted); }
+.campaign-heading h3 { margin:5px 0 0; font-size:clamp(18px,1.5vw,22px); }
+.campaign-card .scene { width:100%; height:clamp(145px,15vw,212px); margin:auto; stroke:var(--art-line); color:var(--art-line); }
+.campaign-card:first-child .scene { height:clamp(160px,18vw,238px); }
+.scene .paper { fill:var(--surface); }
+.scene .accent { stroke:var(--brand); }
+.scene .guides { stroke:var(--border); stroke-dasharray:2 4; }
+.column { transform-box:fill-box; transform-origin:bottom; animation:bar-lift 5s ease-in-out var(--delay) infinite; }
+.sheet-scroll { animation:sheet-float 6s ease-in-out infinite; }
+.packet { animation:packet-travel 6s linear var(--delay) infinite; }
+.tracks { display:grid; align-content:center; gap:8px; flex:1; min-height:135px; overflow:hidden; mask-image:linear-gradient(90deg,transparent,#000 7% 93%,transparent); }
+.ticker { overflow:hidden; }
+.track,.track>div { display:flex; width:max-content; }
+.track { animation:ticker-scroll 28s linear infinite; animation-direction:var(--direction); }
+.tool-chip { display:inline-flex; align-items:center; gap:6px; margin-right:6px; padding:4px 9px; border:1px solid var(--border); border-radius:4px; font-size:12px; white-space:nowrap; }
+.tool-chip i { width:7px; height:7px; border:1px solid var(--brand); transform:rotate(45deg); }
+.controls,.clockline { display:flex; flex-wrap:wrap; align-items:center; gap:4px; }
+.controls button,.motion-control { border:0; background:transparent; color:var(--muted); font:12px var(--font); padding:7px; border-radius:4px; }
+.controls button[aria-pressed=true] { color:var(--text); background:var(--canvas); }
+.clockline { justify-content:space-between; }
+.clockline time { font:11px 'Geist Mono',monospace; }
+.ping { stroke:var(--brand); transform-box:fill-box; transform-origin:center; animation:map-pulse 2.5s ease-out infinite; }
+.dock-area { display:grid; justify-items:center; align-content:center; gap:16px; min-height:170px; flex:1; }
+.dock-area p,.dock-open { font-size:12px; }
+.service-dock { display:flex; align-items:flex-end; gap:5px; border:1px solid var(--border); border-radius:16px; padding:9px; background:var(--canvas); }
+.service-dock button { display:grid; place-items:center; width:clamp(34px,3.7vw,50px); aspect-ratio:1; background:var(--surface); border:1px solid var(--border); border-radius:10px; transform-origin:center bottom; }
+.service-dock svg { width:55%; }
+.service-dock button[aria-pressed=true] { color:var(--brand); transform:translateY(-4px) scale(1.1); border-color:var(--brand); }
+.dock-open { text-decoration:underline; text-underline-offset:3px; }
+.motion-control { grid-column:1/-1; justify-self:end; }
+.campaign-grid[data-paused] *,.campaign-grid[data-offscreen] * { animation-play-state:paused!important; }
+@keyframes bar-lift { 0%,100% {transform:scaleY(.65)} 50% {transform:scaleY(1)} }
+@keyframes sheet-float { 50% {transform:translateY(-4px) rotate(.6deg)} }
+@keyframes packet-travel { 0% {transform:translateX(0);opacity:0} 8%,91% {opacity:1} 100% {transform:translateX(179px);opacity:0} }
+@keyframes ticker-scroll { to {transform:translateX(-50%)} }
+@keyframes map-pulse { from {transform:scale(.45);opacity:1} to {transform:scale(1.4);opacity:0} }
+@media(max-width:800px) {
+  .campaign-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .campaign-grid .campaign-card {grid-column:span 1}
+  .campaign-card:last-of-type {grid-column:1/-1}
+}
+@media(max-width:560px) {
+  .campaign-grid {grid-template-columns:minmax(0,1fr);padding:8px}
+  .service-dock button {width:44px}
+  .campaign-card {padding:16px}
+}
+@media(prefers-reduced-motion:reduce) {
+  .campaign-grid * {animation:none!important;transition:none!important}
+  .packet {transform:translateX(var(--rest))}
+  .motion-control {display:none}
+}
