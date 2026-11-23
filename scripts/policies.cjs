@@ -1,0 +1,31 @@
+const contact = '<a class="text-link" href="https://www.linkedin.com/company/aitiamedia/">Contact Aitia Media on LinkedIn</a>';
+module.exports = {
+  privacy: ['Privacy Policy','How Aitia Media handles information when you visit this website or prepare a project brief.', [
+    ['Visiting this site','Your browser requests pages, fonts and images from our hosting provider. Delivering and securing those requests can involve your IP address, the page requested, browser details and request time.'],
+    ['Preparing a project brief','The form uses the name, work email, company, selected service and message you enter to create a brief in your browser. You choose whether to copy it and send it through LinkedIn. Closing the page ends the form session. A copied brief can remain in your device clipboard.'],
+    ['Contacting the team','If you send a message, Aitia Media receives the information you share and can use it to answer your enquiry and discuss the project. LinkedIn processes activity on its platform under its own privacy policy.'],
+    ['Preferences and external sites','Your theme choice is stored locally until you change it or clear site data. Hosting providers may process technical information to operate their services. Project links take you to external websites with their own privacy practices.'],
+    ['Questions and choices','You can ask about information connected to an enquiry, or request a correction or deletion. Identify the message and how you contacted us so we can locate it. Please omit sensitive personal information from the initial request. '+contact+'.'],
+    ['Regional privacy notices','Read the <a class="text-link" href="gdpr.html">GDPR notice</a>, <a class="text-link" href="ccpa.html">California notice</a> and <a class="text-link" href="cookie-policy.html">cookie and storage policy</a> for more detail.']
+  ]],
+  gdpr: ['GDPR Notice','Information for individuals whose personal data is processed under the GDPR.',[
+    ['Scope and purposes','This notice covers this website and enquiries you choose to send to Aitia Media. Processing related to a separate client campaign may be governed by a campaign-specific notice. Hosting involves technical request data. Enquiries may include names, business contact details and message content.'],
+    ['Legal basis','Where the GDPR applies, the relevant basis depends on the activity. Answering a request for steps before entering a contract may be necessary for that request. Site delivery and security may rely on legitimate interests, subject to the rights of visitors. Where processing relies on consent, you can withdraw it for future processing.'],
+    ['Access and choices','Depending on the circumstances, you can request access, correction, deletion, restriction or portability of your information. You can object to processing based on legitimate interests and to use of your data for direct marketing. You may also complain to a supervisory authority.'],
+    ['Recipients and retention','Hosting services handle technical requests. If you send us a LinkedIn message, the platform processes that correspondence. The brief builder keeps your entries in the current page. For a sent enquiry, ask us about its recipients, retention and any international transfers relevant to your case.'],
+    ['Make a request','Identify the enquiry or processing activity and the right you want to exercise. '+contact+'. Read the <a class="text-link" href="https://commission.europa.eu/law/law-topic/data-protection/information-individuals_en">European Commission guidance on individual rights</a>.']
+  ]],
+  ccpa: ['California Privacy Notice (CCPA)','Privacy information for California residents where the CCPA, as amended by the CPRA, applies.',[
+    ['Website information','Browsing can generate internet activity information and online identifiers for hosting and security. Contact details, business details and correspondence reach Aitia Media if you send a message. The local brief builder prepares your text on your device.'],
+    ['Sources, purposes and recipients','Information comes from your browser or directly from you. The website uses it to deliver pages, remember your theme or prepare your brief. Aitia Media can use sent messages to respond. Hosting providers and the messaging platform handle data for their respective services.'],
+    ['California privacy rights','Eligible residents may request to know, correct or delete personal information, subject to exceptions. Rights may also include opting out of sale or sharing, limiting certain uses of sensitive information and receiving equal treatment when exercising a right.'],
+    ['Advertising choices','The site code does not include an advertising pixel or a sale or sharing mechanism for cross-context behavioural advertising. A Global Privacy Control signal does not require enabling any additional toggle in this interface. This statement is specific to this website.'],
+    ['Requests and authorised agents','Contact us with the right you wish to exercise and enough information to identify the relevant interaction. An authorised agent can identify the person they represent and their authorisation. Verification may be needed for requests involving specific records. '+contact+'. See the <a class="text-link" href="https://oag.ca.gov/privacy/ccpa">California Attorney General’s CCPA guidance</a>.']
+  ]],
+  'cookie-policy': ['Cookie & Storage Policy','What the site stores on your device and how to manage it.',[
+    ['Theme preference','The site saves your light, dark or system theme under the local storage key aitia-theme. Change it with the theme controls or remove it by clearing this site’s browser data.'],
+    ['Form entries and clipboard','The project brief stays in the open page. Choosing Copy brief writes the text to your clipboard. You can replace it by copying other text or using your device clipboard controls.'],
+    ['External services','The website source loads fonts locally and does not install advertising or analytics cookies. The hosting platform and linked services may have their own technical storage and privacy practices.'],
+    ['More information','See our <a class="text-link" href="privacy.html">Privacy Policy</a> for information about enquiries and website requests.']
+  ]]
+};
