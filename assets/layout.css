@@ -50,3 +50,14 @@
  .footer-grid .footer-column:last-child{grid-column:auto}.footer-bottom{align-items:center}
 }
 @media(max-width:440px){.bento{grid-template-columns:1fr}.bento-card,.bento-card.wide{grid-column:auto}.bento-card .graphic,.bento-card:first-child .graphic{height:144px}.bento-card h3{font-size:20px}.bento-card .card-caption{display:flex}.bento-card .kicker{font-size:10px}.contact-box{max-width:100%}}
+
+/* Draw the theme control independently of the device's symbol fonts. */
+.masthead .nav .theme-toggle { font-size: 0; }
+.theme-toggle::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  background: linear-gradient(90deg, currentColor 50%, transparent 50%);
+}
