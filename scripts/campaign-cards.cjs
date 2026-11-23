@@ -4,9 +4,9 @@ const channels = {
   Creative: ['Whitepapers', 'Case studies', 'Landing pages', 'Brand identity', 'Editorial', 'Ad creative']
 };
 const cities = [
-  ['Pune', 'Asia/Kolkata', 230, 83],
-  ['London', 'Europe/London', 152, 43],
-  ['New York', 'America/New_York', 88, 59]
+  ['Pune', 'Asia/Kolkata', 211.55, 68.21],
+  ['London', 'Europe/London', 149.89, 33.84],
+  ['New York', 'America/New_York', 88.33, 45.09]
 ];
 const services = [
   ['B2B Lead Generation', 'b2b-lead-generation', 'people'],
@@ -32,8 +32,15 @@ function sheet() {
   return scene('0 0 430 190', `<g class="guides"><path d="m10 156 286-153M77 187 306 63M51 111l162 84M246 7l160 80"/></g><g class="sheet-scroll">${ribbon}${bars}</g>`);
 }
 function conveyor() {
-  const packets = [0,1,2].map(i=>`<g class="packet" style="--delay:${-i*2}s;--rest:${i*60}px"><path class="paper" d="m36 82 17-10 17 10v22l-17 10-17-10Z"/><path d="m36 82 17 10 17-10m-17 10v22"/><path class="accent" d="m42 79 17 10 5-3-17-10Z"/></g>`).join('');
-  return scene('0 0 300 150',`<g transform="rotate(6 150 75)"><path class="paper" d="m15 111 35-20h196l38 19-35 20H53Z"/><path d="m15 111 37 19h197l35-20v9l-35 20H52l-37-19Z"/>${packets}<path d="M142 119V59l29-16 34 17v49m-63-50 33 17 30-16m-30 16v58"/><path class="accent" d="m145 63 26-15 29 14" /></g>`);
+  const pages = [0,1,2].map(i => `<g class="packet" style="--delay:${-i * 2}s;--rest:${i * 60}px">
+    <path class="paper" d="m36 78 22-12 14 8v28l-22 13-14-9Z"/>
+    <path d="m36 78 14 8 22-12m-22 12v29"/><path class="accent" d="m54 92 12-7m-12 13 9-5"/>
+  </g>`).join('');
+  const rollers = Array.from({length:14}, (_,i) => `<path d="m${30+i*16} 108 20-12"/>`).join('');
+  return scene('0 0 300 150', `<path class="paper" d="m12 108 25-15h226l25 16-25 15H38Z"/>
+    <g opacity=".32">${rollers}</g><path d="m12 108 26 16h225l25-15v5l-25 16H38l-26-16Z"/>
+    ${pages}<path class="accent" d="M170 113V68l20-11 17 10v33" stroke-dasharray="3 3"/>`);
+
 }
 function filterButton(name, attr, first) {
   return `<button type="button" ${attr}="${name}" aria-pressed="${first}">${name}</button>`;
@@ -46,9 +53,8 @@ function tracks() {
   return `<div class="tracks">${rows}</div><div class="controls" aria-label="Filter capabilities">${['All',...Object.keys(channels)].map((n,i)=>filterButton(n,'data-filter',i===0)).join('')}</div>`;
 }
 function world() {
-  const land = 'M12 48l20-17 29-8 27 5 18 16-6 12-20 6-9 19-13-3-8-19-22-1ZM76 87l25-3 15 14-4 19-17 26-9-26ZM129 45l24-16 14 4 12 13-6 13-20-2ZM144 66l22-5 21 12-4 24-17 22-15-12-9-25ZM171 42l37-23 51 5 29 20-14 14-20 5-13 18-11 12-10-18-22-6-13-14ZM236 96l17-1 13 13-16 2ZM253 119l22-13 17 9-1 13-26 6Z';
   const markers = cities.map(([name,zone,x,y],i)=>`<g data-pin="${name}" class="pin" style="${i?'display:none':''}" transform="translate(${x} ${y})"><circle class="ping" r="9"/><circle r="3" fill="var(--brand)"/></g>`).join('');
-  return scene('0 0 300 150',`<defs><pattern id="atlas-dots" width="3.8" height="3.8" patternUnits="userSpaceOnUse"><circle cx="1.4" cy="1.4" r="1" fill="currentColor"/></pattern></defs><path d="${land}" stroke="none" fill="url(#atlas-dots)"/>${markers}`)+
+  return scene('0 0 300 150',`<image href="assets/market-map.svg" width="300" height="150"/>${markers}`)+
     `<div class="clockline"><div class="controls">${cities.map(([n,z],i)=>`<button type="button" data-city="${n}" data-zone="${z}" aria-pressed="${i===0}">${n}</button>`).join('')}</div><time data-clock></time></div>`;
 }
 function dock() {
@@ -56,11 +62,11 @@ function dock() {
 }
 module.exports = function campaignCards() {
   const panels = [
-    ['Campaign planning','From audience research to qualified leads',sheet()],
-    ['Capabilities','Explore the campaign toolkit',tracks()],
-    ['Content syndication','How a resource reaches buyers',conveyor()],
+    ['Campaign planning','From account list to sales brief',sheet()],
+    ['Capabilities','Find the right channel',tracks()],
+    ['Content syndication','A guide, delivered to its readers',conveyor()],
     ['Market hours','Plan across time zones',world()],
-    ['Services','Choose your campaign',dock()]
+    ['Services','Explore B2B services',dock()]
   ];
   return `<section class="campaign-grid" aria-label="How Aitia Media works">${panels.map(([label,title,art])=>`<article class="campaign-card"><div class="campaign-heading"><span>${label}</span><h3>${title}</h3></div>${art}</article>`).join('')}<button type="button" class="motion-control" aria-pressed="false">Pause motion</button></section>`;
 };
