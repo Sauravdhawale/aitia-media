@@ -1,8 +1,8 @@
-const contact = '<a class="text-link" href="https://www.linkedin.com/company/aitiamedia/">Contact Aitia Media on LinkedIn</a>';
+const contact = '<a class="text-link" href="https://www.linkedin.com/company/aitiamedia/">Contact Aitia Media on LinkedIn</a> or <a class="text-link" href="mailto:outreach@aitiamedia.com">email outreach@aitiamedia.com</a>';
 module.exports = {
   privacy: ['Privacy Policy','How Aitia Media handles information when you visit this website or prepare a project brief.', [
     ['Visiting this site','Your browser requests pages, fonts and images from our hosting provider. Delivering and securing those requests can involve your IP address, the page requested, browser details and request time.'],
-    ['Preparing a project brief','The form uses the name, work email, company, selected service and message you enter to create a brief in your browser. You choose whether to copy it and send it through LinkedIn. Closing the page ends the form session. A copied brief can remain in your device clipboard.'],
+    ['Preparing a project brief','The form uses the name, work email, company, selected service and message you enter to create a brief in your browser. You choose whether to send it using your email app or copy it into LinkedIn. Closing the page ends the form session. A copied brief can remain in your device clipboard.'],
     ['Contacting the team','If you send a message, Aitia Media receives the information you share and can use it to answer your enquiry and discuss the project. LinkedIn processes activity on its platform under its own privacy policy.'],
     ['Preferences and external sites','Your theme choice is stored locally until you change it or clear site data. Hosting providers may process technical information to operate their services. Project links take you to external websites with their own privacy practices.'],
     ['Questions and choices','You can ask about information connected to an enquiry, or request a correction or deletion. Identify the message and how you contacted us so we can locate it. Please omit sensitive personal information from the initial request. '+contact+'.'],
