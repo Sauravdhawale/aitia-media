@@ -34,14 +34,26 @@ function contactLinks() {
   return `<a href="mailto:${outreachEmail}">${outreachEmail}</a>${phone}
     <a href="https://www.linkedin.com/company/aitiamedia/" target="_blank" rel="noopener noreferrer">Aitia Media on LinkedIn</a>`;
 }
+function complianceShelf() {
+  const resources = [
+    ['GDPR', 'EU privacy notice', 'gdpr.html', '<path d="M12 2 20 5v6c0 5-4 9-8 11-4-2-8-6-8-11V5Z"/><path d="M8 11h8m-8 4h5"/>'],
+    ['CCPA', 'California privacy notice', 'ccpa.html', '<rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="11" r="2"/><path d="M6 16q3-4 6 0m2-6h4m-4 4h3"/>'],
+    ['SOC 2', 'Request documentation', 'mailto:' + outreachEmail + '?subject=SOC%202%20documentation%20enquiry', '<path d="M5 3h9l5 5v13H5Z"/><path d="M14 3v6h5M8 13h8m-8 4h5"/>'],
+    ['ISO', 'Request documentation', 'mailto:' + outreachEmail + '?subject=ISO%20documentation%20enquiry', '<circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/>']
+  ];
+  const tiles = resources.map(([name, action, url, icon]) =>
+    `<a class="trust-tile" href="${url}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icon}</svg><span><strong>${name}</strong><small>${action}</small></span></a>`
+  ).join('');
+  return `<nav class="trust-shelf" aria-labelledby="trust-heading"><div class="trust-heading"><h2 id="trust-heading">Compliance</h2><div class="trust-policies"><a href="privacy.html">Privacy Policy</a><a href="cookie-policy.html">Cookie Policy</a></div></div><div class="trust-tiles">${tiles}</div></nav>`;
+}
 function footer() {
   return `<footer class="footer inset"><div class="footer-grid site-directory">
     <div class="footer-brand">${logo()}<p>Audience research, content and campaigns for B2B sales teams.</p></div>
     <nav class="footer-column" aria-label="Explore"><h2 class="kicker">Explore</h2><a href="about.html">About us</a><a href="services.html">All services</a><a href="work.html">Our work</a><a href="contact.html">Contact us</a></nav>
     <nav class="footer-column" aria-label="B2B services"><h2 class="kicker">B2B services</h2>${services.slice(0,4).map(s => `<a href="${s.slug}.html">${s.name}</a>`).join('')}</nav>
-    <nav class="footer-column" aria-label="Compliance"><h2 class="kicker">Compliance</h2><a href="privacy.html">Privacy Policy</a><a href="cookie-policy.html">Cookie Policy</a><div class="legal-badges">${['GDPR','CCPA'].map(label => `<a class="notice-badge" href="${label.toLowerCase()}.html" aria-label="${label} privacy notice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2 21 6v6c0 5-6 9-9 10-3-1-9-5-9-10V6Z"/><rect x="9" y="10" width="6" height="6" rx="1"/><path d="M10 10V8a2 2 0 0 1 4 0v2"/></svg>${label}</a>`).join('')}</div></nav>
+
     <div class="footer-column footer-contact"><h2 class="kicker">Contact</h2>${contactLinks()}</div>
-  </div><div class="footer-bottom"><span>© <span data-year>2026</span> Aitia Media</span><div class="theme-switch" role="group" aria-label="Color theme"><button data-theme-choice="light" aria-label="Light theme" aria-pressed="true">☀</button><button data-theme-choice="system" aria-label="System theme" aria-pressed="false">▣</button><button data-theme-choice="dark" aria-label="Dark theme" aria-pressed="false">☾</button></div></div></footer>`;
+  </div>${complianceShelf()}<div class="footer-bottom"><span>© <span data-year>2026</span> Aitia Media</span><div class="theme-switch" role="group" aria-label="Color theme"><button data-theme-choice="light" aria-label="Light theme" aria-pressed="true">☀</button><button data-theme-choice="system" aria-label="System theme" aria-pressed="false">▣</button><button data-theme-choice="dark" aria-label="Dark theme" aria-pressed="false">☾</button></div></div></footer>`;
 }
 function cta(){return `<div class="divider"></div><section class="cta inset"><span class="kicker">Good things start with a conversation</span><h2>Your next chapter.<br><em>Let's build it together.</em></h2><p>Tell us what you have in mind. We'll start with the audience, the objective, and the possibilities.</p><a class="btn primary" href="contact.html">Start a conversation</a></section>`}
 function layout(title,desc,active,body){return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="${desc}"><meta name="theme-color" content="#F2F3F5"><title>${title} | Aitia Media</title><link rel="icon" href="favicon.ico?v=2" sizes="16x16 32x32 48x48"><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png"><link rel="preload" href="assets/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin><script>try{let t=localStorage.getItem('aitia-theme')||'light';document.documentElement.dataset.theme=t==='system'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):t}catch(e){}</script><link rel="stylesheet" href="assets/theme.css"><link rel="stylesheet" href="assets/layout.css">${active === 'home' ? '<link rel="stylesheet" href="assets/campaign.css"><script src="assets/campaign.js" defer></script><script type="module" src="assets/home-motion.mjs"></script>' : ''}<script src="assets/site.js" defer></script></head><body><a href="#main" class="skip">Skip to content</a><div class="frame">${navigation(active)}<main id="main">${body}</main>${footer()}</div></body></html>`}
