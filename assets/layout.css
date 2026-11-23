@@ -1,5 +1,28 @@
 /* The header occupies a real row across every route. */
-.frame { width: min(100%, 1024px); }
+/* Continuous page rails follow the viewport at every breakpoint. */
+:root { --page-gutter: 40px; }
+html[data-theme="dark"] {
+  --canvas: #0d0d0f;
+  --surface: #121214;
+  --border: #28282b;
+}
+.frame {
+  width: calc(100% - var(--page-gutter) - var(--page-gutter));
+  max-width: none;
+  margin-inline: auto;
+  border-inline: 1px solid var(--border);
+}
+.frame::before, .frame::after, .section::before { content: none; }
+.frame .inset { padding-inline: 16px; }
+.frame .masthead { background: var(--canvas); }
+.frame .hero::before, .frame .hero::after { content: none; }
+.frame .divider { height: 1px; border: 0; background: var(--border); }
+.frame .bento { background: var(--canvas); }
+@media (min-width: 901px) {
+  .frame .masthead { display: grid; grid-template-columns: 1fr auto 1fr; }
+  .masthead > .brand { justify-self: start; }
+  .masthead > .nav { grid-column: 2; }
+}
 .masthead { position: relative; z-index: 25; height: auto; min-height: 80px; background:var(--surface); }
 .masthead .brand,.footer .brand { width:fit-content; }
 .masthead .nav { margin-left:auto; background:var(--canvas); backdrop-filter:none; }
@@ -37,9 +60,9 @@
 .category-card li a:hover,.policy-links a:hover { color:var(--brand); }
 .legal-copy p { font-size:16px; line-height:1.65; }
 .brief-links { display:flex; flex-wrap:wrap; gap:16px; margin-top:20px; }
-@media(max-width:900px){.frame{width:calc(100% - 32px);margin-inline:auto}}
+@media(max-width:900px){:root{--page-gutter:24px}}
 @media(max-width:680px){
- .frame{width:100%;margin:0;border:0}
+ :root{--page-gutter:12px}
  .masthead{min-height:68px;gap:8px}.masthead .nav{gap:0;padding:3px}
  .masthead .nav>a:not(.nav-cta){display:none}.masthead .nav .menu-toggle{display:inline-block!important}
  .nav .nav-cta,.nav .menu-toggle{font-size:13px;padding:10px}
